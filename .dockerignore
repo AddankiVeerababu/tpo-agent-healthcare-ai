@@ -1,0 +1,12 @@
+.venv
+venv
+env
+__pycache__
+*.pyc
+.pytest_cache
+.git
+.gitignore
+.DS_Store
+Thumbs.db
+test_streamlit.py
+test_widgets.py

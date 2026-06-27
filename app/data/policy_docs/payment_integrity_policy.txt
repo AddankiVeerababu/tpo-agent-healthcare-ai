@@ -1,0 +1,13 @@
+Synthetic Policy Document: Payment Integrity and Claim Review
+
+This policy is fictional and created only for an educational synthetic healthcare AI project. It must not be used for real clinical, billing, or coverage decisions.
+
+Payment integrity workflows evaluate claims for billing accuracy, documentation completeness, unusual utilization, duplicate or excessive services, coding consistency, and policy alignment.
+
+Claims may be prioritized for review when they involve high claim amount, high visit frequency, incomplete documentation, unusual provider patterns, or services that do not clearly align with the diagnosis.
+
+Anomaly detection may be used to identify claims that differ from typical synthetic claim patterns. Anomaly detection should not be treated as proof of fraud, waste, abuse, or improper billing.
+
+AI systems should support operational triage by identifying cases that may require additional documentation or human review. They should not make final payment decisions without human oversight.
+
+Recommended actions may include approve, manual review, or request documentation.

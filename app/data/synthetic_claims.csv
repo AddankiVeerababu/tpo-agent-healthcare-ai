@@ -1,0 +1,41 @@
+case_id,patient_age,diagnosis,procedure,claim_amount,prior_visits_30d,documentation_complete,provider_type,length_of_stay_days,member_risk_score,claim_type,risk_level
+CASE-001,67,Type 2 diabetes with neuropathy,Wound care,1250,6,No,Outpatient clinic,0,0.82,Payment,High
+CASE-002,45,Lower back pain,Physical therapy,320,2,Yes,Outpatient clinic,0,0.35,Treatment,Low
+CASE-003,72,Heart failure,Chest imaging,2100,4,Yes,Hospital outpatient,1,0.76,Treatment,Medium
+CASE-004,58,Chronic kidney disease,Laboratory panel,480,3,Yes,Primary care,0,0.61,Operations,Low
+CASE-005,81,Diabetic foot ulcer,Wound care,3100,9,No,Wound care center,0,0.91,Payment,High
+CASE-006,39,Sinus infection,Advanced imaging,1800,1,No,Urgent care,0,0.28,Payment,Medium
+CASE-007,64,Osteoarthritis,Joint injection,950,5,Yes,Specialist clinic,0,0.66,Treatment,Medium
+CASE-008,52,Hypertension,Office visit,180,1,Yes,Primary care,0,0.42,Operations,Low
+CASE-009,76,COPD exacerbation,Chest imaging,1650,7,No,Hospital outpatient,1,0.88,Payment,High
+CASE-010,29,Minor injury,Office visit,120,0,Yes,Urgent care,0,0.18,Treatment,Low
+CASE-011,69,Peripheral vascular disease,Wound care,2450,8,No,Outpatient clinic,0,0.86,Payment,High
+CASE-012,43,Diabetes follow-up,Laboratory panel,260,2,Yes,Primary care,0,0.47,Operations,Low
+CASE-013,74,Stroke history,Physical therapy,1450,6,Yes,Rehabilitation clinic,0,0.79,Treatment,Medium
+CASE-014,60,Unspecified abdominal pain,Advanced imaging,2750,3,No,Hospital outpatient,0,0.64,Payment,High
+CASE-015,35,Preventive exam,Office visit,160,0,Yes,Primary care,0,0.22,Operations,Low
+CASE-016,83,Pressure ulcer,Wound care,3300,10,No,Skilled nursing facility,2,0.94,Payment,High
+CASE-017,57,Shoulder pain,Physical therapy,720,4,Yes,Outpatient clinic,0,0.51,Treatment,Medium
+CASE-018,48,Asthma,Laboratory panel,390,2,Yes,Primary care,0,0.44,Operations,Low
+CASE-019,71,Diabetes with complications,Wound care,1850,7,Yes,Wound care center,0,0.81,Treatment,Medium
+CASE-020,66,Chest pain,Chest imaging,2950,5,No,Hospital outpatient,1,0.84,Payment,High
+CASE-021,31,Seasonal allergies,Office visit,110,0,Yes,Primary care,0,0.12,Operations,Low
+CASE-022,62,Chronic pain,Physical therapy,1550,9,No,Outpatient clinic,0,0.72,Payment,High
+CASE-023,55,Type 2 diabetes,Laboratory panel,510,4,Yes,Primary care,0,0.58,Operations,Medium
+CASE-024,78,Venous leg ulcer,Wound care,2250,6,Yes,Wound care center,0,0.87,Treatment,Medium
+CASE-025,46,Migraine,Advanced imaging,2400,2,No,Specialist clinic,0,0.49,Payment,High
+CASE-026,70,Pneumonia follow-up,Chest imaging,1250,3,Yes,Hospital outpatient,1,0.74,Treatment,Medium
+CASE-027,41,Knee pain,Joint injection,850,2,Yes,Specialist clinic,0,0.39,Treatment,Low
+CASE-028,59,Diabetes management,Laboratory panel,430,5,Yes,Primary care,0,0.63,Operations,Medium
+CASE-029,80,Pressure injury,Wound care,3600,11,No,Skilled nursing facility,3,0.97,Payment,High
+CASE-030,37,Upper respiratory infection,Office visit,140,1,Yes,Urgent care,0,0.21,Treatment,Low
+CASE-031,68,Peripheral neuropathy,Wound care,1750,5,Yes,Outpatient clinic,0,0.73,Treatment,Medium
+CASE-032,50,Back pain,Advanced imaging,1950,2,Yes,Specialist clinic,0,0.53,Treatment,Medium
+CASE-033,73,COPD,Chest imaging,2200,6,No,Hospital outpatient,1,0.83,Payment,High
+CASE-034,44,Hypertension follow-up,Office visit,190,1,Yes,Primary care,0,0.36,Operations,Low
+CASE-035,61,Diabetic ulcer,Wound care,2850,8,No,Wound care center,0,0.89,Payment,High
+CASE-036,54,Arthritis,Joint injection,780,3,Yes,Specialist clinic,0,0.55,Treatment,Medium
+CASE-037,33,Wellness visit,Office visit,130,0,Yes,Primary care,0,0.17,Operations,Low
+CASE-038,77,Heart failure,Chest imaging,1850,5,Yes,Hospital outpatient,1,0.80,Treatment,Medium
+CASE-039,63,Chronic wound,Wound care,2100,7,No,Outpatient clinic,0,0.85,Payment,High
+CASE-040,49,Diabetes screening,Laboratory panel,350,2,Yes,Primary care,0,0.41,Operations,Low

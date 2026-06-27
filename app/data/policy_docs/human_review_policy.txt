@@ -1,0 +1,13 @@
+Synthetic Policy Document: Human-in-the-Loop Governance and Responsible AI
+
+This policy is fictional and created only for an educational synthetic healthcare AI project. It must not be used for real clinical, billing, or coverage decisions.
+
+AI-generated recommendations in healthcare Treatment, Payment, and Operations workflows must be used as decision support only. The system must not autonomously deny care, deny payment, diagnose patients, or replace licensed clinical judgment.
+
+Human review is required when documentation is incomplete, model risk is high, anomaly detection is triggered, policy evidence is uncertain, or the case involves complex clinical conditions.
+
+The system should clearly identify governance flags, including recommendation only, human review required, synthetic data only, no PHI used, no autonomous denial, and policy evidence required.
+
+The system should provide transparent reasoning, relevant policy evidence, and explainability signals to help reviewers understand why a case was routed for review.
+
+Responsible AI safeguards should include privacy protection, synthetic data usage, explainability, auditability, human oversight, and clear limitations.

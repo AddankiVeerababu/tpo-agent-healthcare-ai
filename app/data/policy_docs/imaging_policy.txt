@@ -1,0 +1,13 @@
+Synthetic Policy Document: Diagnostic and Advanced Imaging Review
+
+This policy is fictional and created only for an educational synthetic healthcare AI project. It must not be used for real clinical, billing, or coverage decisions.
+
+Imaging claims may require review when the procedure involves advanced imaging, chest imaging, repeat imaging, high-cost imaging, or imaging associated with unclear diagnosis information.
+
+Documentation for imaging services should include diagnosis, clinical indication, ordering provider rationale, prior conservative treatment when applicable, relevant symptoms, and whether the imaging result is expected to change treatment planning.
+
+Claims may be considered higher risk when documentation is incomplete, claim amount is high, prior visits are elevated, or the diagnosis-procedure relationship is unclear.
+
+AI-generated recommendations should support triage only. The system must not make autonomous coverage denials. If the case is uncertain, the recommended decision should be manual review or request documentation.
+
+For emergency symptoms or potentially urgent clinical conditions, the system should avoid language that appears to delay care. The output should be framed as payment or documentation review support only.

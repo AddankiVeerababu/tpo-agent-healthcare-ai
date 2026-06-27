@@ -1,0 +1,13 @@
+Synthetic Policy Document: Wound Care Medical Necessity Review
+
+This policy is fictional and created only for an educational synthetic healthcare AI project. It must not be used for real clinical, billing, or coverage decisions.
+
+Wound care services may require additional review when the claim involves diabetic foot ulcers, pressure ulcers, venous leg ulcers, chronic wounds, or wounds associated with peripheral vascular disease.
+
+For wound care claims, documentation should include wound size, wound depth, wound location, tissue appearance, drainage status, treatment plan, frequency of treatment, response to prior treatment, and medical necessity rationale.
+
+Claims with incomplete documentation, unusually high visit frequency, unusually high claim amount, or unclear medical necessity may be routed for manual review.
+
+A claim should not be automatically denied by an AI system. If risk is high or documentation is incomplete, the recommended action should be to request additional documentation or route the case to a qualified human reviewer.
+
+Human reviewers should consider patient complexity, comorbidities, provider notes, care setting, and continuity of care before making a final decision.

@@ -1,0 +1,13 @@
+Synthetic Policy Document: Documentation Completeness and Review Standards
+
+This policy is fictional and created only for an educational synthetic healthcare AI project. It must not be used for real clinical, billing, or coverage decisions.
+
+Documentation completeness is a key factor in Treatment, Payment, and Operations review. Required documentation may include diagnosis, procedure details, provider notes, medical necessity rationale, treatment plan, prior treatment history, and supporting clinical observations.
+
+Cases with missing documentation should not be automatically denied by an AI tool. Instead, the system should recommend requesting additional documentation or routing the case to a human reviewer.
+
+Incomplete documentation, high utilization, high claim amount, and mismatch between diagnosis and procedure may increase review priority.
+
+AI-generated outputs should clearly state that they are recommendations only and that final decisions require qualified human review according to organizational policy.
+
+The system should avoid generating new clinical facts that are not present in the case input or retrieved policy text.
