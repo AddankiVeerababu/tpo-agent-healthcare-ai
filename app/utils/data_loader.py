@@ -14,9 +14,22 @@ def load_claims_data() -> pd.DataFrame:
     return pd.read_csv(data_path)
 
 
+def load_claims_timeseries_data() -> pd.DataFrame:
+    """
+    Load synthetic time-series claim activity data.
+
+    This is used to demonstrate operational anomaly detection
+    over daily claim volume and claim amount trends.
+    """
+    data_path = DATA_DIR / "synthetic_claims_timeseries.csv"
+    df = pd.read_csv(data_path)
+    df["date"] = pd.to_datetime(df["date"])
+    return df
+
+
 def get_feature_columns() -> list[str]:
     """
-    Features used by the ML models.
+    Features used by the claim-level ML models.
     """
     return [
         "patient_age",

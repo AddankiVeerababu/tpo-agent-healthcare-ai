@@ -9,7 +9,7 @@ import streamlit as st
 
 
 st.set_page_config(
-    page_title="TPO Agent Healthcare AI",
+    page_title="TPO Agent",
     page_icon="🏥",
     layout="wide",
 )
@@ -18,81 +18,86 @@ st.set_page_config(
 CUSTOM_CSS = """
 <style>
 .block-container {
-    padding-top: 2rem;
+    padding-top: 1.5rem;
     padding-bottom: 2rem;
-    max-width: 1400px;
+    max-width: 1360px;
 }
 
-.main-title {
-    font-size: 2.4rem;
+h1, h2, h3 {
+    letter-spacing: -0.02em;
+}
+
+.app-title {
+    font-size: 2.25rem;
     font-weight: 800;
+    color: #f8fafc;
     margin-bottom: 0.2rem;
-    color: #f9fafb;
 }
 
-.subtitle {
+.app-subtitle {
+    color: #cbd5e1;
     font-size: 1rem;
-    color: #cbd5e1;
-    margin-bottom: 1.2rem;
-}
-
-.info-banner {
-    background-color: #172554;
-    border-left: 5px solid #38bdf8;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    color: #e0f2fe;
-    margin-bottom: 1.5rem;
-}
-
-.workflow-card {
-    background-color: #020617;
-    color: #f9fafb;
-    padding: 1rem;
-    border-radius: 0.8rem;
     margin-bottom: 1rem;
+}
+
+.notice {
+    background-color: #0f172a;
     border: 1px solid #334155;
-    font-size: 0.95rem;
+    border-left: 5px solid #38bdf8;
+    padding: 0.9rem 1rem;
+    border-radius: 0.7rem;
+    color: #e0f2fe;
+    margin-bottom: 1.2rem;
+    line-height: 1.5;
 }
 
-.card {
+.workflow {
     background-color: #111827;
     border: 1px solid #374151;
-    padding: 1.2rem;
     border-radius: 0.8rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    padding: 0.9rem 1rem;
+    color: #e5e7eb;
+    font-size: 0.92rem;
     margin-bottom: 1rem;
-    color: #f9fafb;
 }
 
-.card-title {
-    font-size: 0.85rem;
-    color: #cbd5e1;
-    margin-bottom: 0.35rem;
-}
-
-.card-value {
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: #ffffff;
-}
-
-.summary-box {
+.section-card {
     background-color: #111827;
     border: 1px solid #374151;
-    padding: 1.2rem;
-    border-radius: 0.8rem;
+    border-radius: 0.85rem;
+    padding: 1.1rem;
+    color: #f8fafc;
     margin-bottom: 1rem;
-    color: #f9fafb;
-    line-height: 1.55;
 }
 
-.decision-approve {
-    background-color: #052e16;
-    color: #86efac;
-    border: 1px solid #22c55e;
+.kpi-card {
+    background-color: #111827;
+    border: 1px solid #374151;
+    border-radius: 0.85rem;
     padding: 1rem;
-    border-radius: 0.8rem;
+    color: #f8fafc;
+    min-height: 96px;
+}
+
+.kpi-label {
+    color: #94a3b8;
+    font-size: 0.82rem;
+    margin-bottom: 0.4rem;
+}
+
+.kpi-value {
+    color: #f8fafc;
+    font-size: 1.25rem;
+    font-weight: 800;
+    line-height: 1.25;
+}
+
+.decision-docs {
+    background-color: #450a0a;
+    color: #fecaca;
+    border: 1px solid #ef4444;
+    padding: 1rem;
+    border-radius: 0.85rem;
     font-size: 1.45rem;
     font-weight: 800;
     text-align: center;
@@ -103,18 +108,18 @@ CUSTOM_CSS = """
     color: #fde68a;
     border: 1px solid #f59e0b;
     padding: 1rem;
-    border-radius: 0.8rem;
+    border-radius: 0.85rem;
     font-size: 1.45rem;
     font-weight: 800;
     text-align: center;
 }
 
-.decision-docs {
-    background-color: #450a0a;
-    color: #fecaca;
-    border: 1px solid #ef4444;
+.decision-approve {
+    background-color: #052e16;
+    color: #86efac;
+    border: 1px solid #22c55e;
     padding: 1rem;
-    border-radius: 0.8rem;
+    border-radius: 0.85rem;
     font-size: 1.45rem;
     font-weight: 800;
     text-align: center;
@@ -123,20 +128,20 @@ CUSTOM_CSS = """
 .flag {
     display: inline-block;
     background-color: #1f2937;
-    color: #f9fafb;
-    padding: 0.35rem 0.6rem;
+    color: #f8fafc;
+    padding: 0.38rem 0.65rem;
     border-radius: 999px;
-    margin: 0.2rem;
-    font-size: 0.85rem;
+    margin: 0.22rem;
+    font-size: 0.84rem;
     border: 1px solid #4b5563;
 }
 
-.chat-help {
+.chat-note {
     background-color: #082f49;
-    border: 1px solid #0ea5e9;
+    border: 1px solid #0284c7;
     color: #e0f2fe;
-    padding: 1rem;
-    border-radius: 0.8rem;
+    padding: 0.9rem 1rem;
+    border-radius: 0.85rem;
     margin-bottom: 1rem;
 }
 
@@ -144,11 +149,11 @@ div[data-testid="stMetric"] {
     background-color: #111827;
     border: 1px solid #374151;
     padding: 1rem;
-    border-radius: 0.8rem;
+    border-radius: 0.85rem;
 }
 
 div[data-testid="stMetric"] label {
-    color: #cbd5e1 !important;
+    color: #94a3b8 !important;
 }
 
 div[data-testid="stMetricValue"] {
@@ -157,7 +162,7 @@ div[data-testid="stMetricValue"] {
 
 button[kind="primary"] {
     background-color: #2563eb;
-    border-radius: 0.6rem;
+    border-radius: 0.7rem;
     border: none;
     font-weight: 700;
 }
@@ -168,6 +173,7 @@ button[kind="primary"]:hover {
 
 .stTabs [data-baseweb="tab"] {
     color: #e5e7eb;
+    font-size: 0.94rem;
 }
 
 .stTabs [aria-selected="true"] {
@@ -182,51 +188,52 @@ def apply_css():
 
 
 def initialize_session_state():
-    if "final_state" not in st.session_state:
-        st.session_state.final_state = None
+    defaults = {
+        "final_state": None,
+        "final_decision": None,
+        "chat_messages": [],
+        "case_data": None,
+    }
 
-    if "final_decision" not in st.session_state:
-        st.session_state.final_decision = None
-
-    if "chat_messages" not in st.session_state:
-        st.session_state.chat_messages = []
+    for key, value in defaults.items():
+        if key not in st.session_state:
+            st.session_state[key] = value
 
 
 def render_header():
     st.markdown(
         """
-        <div class="main-title">TPO Agent: Governed Agentic AI for Healthcare Decision Support</div>
-        <div class="subtitle">
-        Agentic AI + RAG + Risk Classification + Anomaly Detection + Explainability + Local LLM Reasoning + Governance
+        <div class="app-title">TPO Agent</div>
+        <div class="app-subtitle">
+        Governed AI case review for synthetic healthcare Treatment, Payment, and Operations workflows.
         </div>
-        <div class="info-banner">
-        <b>Privacy and safety notice:</b> This demo uses synthetic healthcare data only.
-        It does not use PHI and must not be used for real clinical, billing, coverage, payment, or operational decisions.
+        <div class="notice">
+        This is a synthetic proof of concept. It uses fake healthcare cases and fictional policy text.
+        It is not designed for real clinical, billing, coverage, or payment decisions.
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 
-def render_agent_pipeline():
-    st.markdown("### Agentic Workflow")
+def render_workflow():
     st.markdown(
         """
-        <div class="workflow-card">
-        Case Intake Agent → Policy Retrieval Agent → Risk Classification Agent → 
-        Anomaly Detection Agent → Explainability Agent → LLM Reasoning Agent → 
-        Governance Review Agent → Final Decision Dashboard
+        <div class="workflow">
+        Case Intake → Policy Retrieval → Risk Prediction → Clustering → Claim Anomaly Check → 
+        Time-Series Signal → Explanation → Local LLM Reasoning → Governance Review
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 
-def render_sidebar_inputs():
-    st.sidebar.title("Synthetic Case Intake")
-    st.sidebar.caption("Enter a synthetic Treatment, Payment, or Operations case.")
+def get_case_input():
+    col1, col2, col3 = st.columns(3)
 
-    with st.sidebar.expander("Patient and Clinical Context", expanded=True):
+    with col1:
+        st.markdown("#### Clinical Context")
+
         patient_age = st.number_input(
             "Patient age",
             min_value=0,
@@ -252,6 +259,9 @@ def render_sidebar_inputs():
             ],
         )
 
+    with col2:
+        st.markdown("#### Provider and Utilization")
+
         provider_type = st.selectbox(
             "Provider type",
             [
@@ -266,7 +276,21 @@ def render_sidebar_inputs():
             ],
         )
 
-    with st.sidebar.expander("Payment, Utilization, and Risk Signals", expanded=True):
+        prior_visits_30d = st.number_input(
+            "Prior visits in last 30 days",
+            min_value=0,
+            value=6,
+        )
+
+        length_of_stay_days = st.number_input(
+            "Length of stay days",
+            min_value=0,
+            value=0,
+        )
+
+    with col3:
+        st.markdown("#### Payment and Risk")
+
         claim_amount = st.number_input(
             "Claim amount",
             min_value=0.0,
@@ -274,21 +298,9 @@ def render_sidebar_inputs():
             step=50.0,
         )
 
-        prior_visits_30d = st.number_input(
-            "Prior visits in last 30 days",
-            min_value=0,
-            value=6,
-        )
-
         documentation_complete = st.selectbox(
             "Documentation complete",
             ["No", "Yes"],
-        )
-
-        length_of_stay_days = st.number_input(
-            "Length of stay days",
-            min_value=0,
-            value=0,
         )
 
         member_risk_score = st.slider(
@@ -300,7 +312,7 @@ def render_sidebar_inputs():
         )
 
         claim_type = st.selectbox(
-            "TPO workflow type",
+            "Workflow type",
             ["Payment", "Treatment", "Operations"],
         )
 
@@ -318,37 +330,35 @@ def render_sidebar_inputs():
     }
 
 
-def render_case_summary(case_data: dict):
-    st.markdown("### Case Summary")
+def run_workflow(case_data: dict):
+    from app.agents.graph import run_tpo_workflow
+
+    return run_tpo_workflow(case_data)
+
+
+def render_case_kpis(case_data: dict):
+    st.markdown("#### Case Snapshot")
 
     col1, col2, col3, col4 = st.columns(4)
 
-    cards = [
+    items = [
         ("Procedure", case_data["procedure"]),
         ("Claim Amount", f"${case_data['claim_amount']:,.0f}"),
         ("Prior Visits", str(case_data["prior_visits_30d"])),
         ("Documentation", case_data["documentation_complete"]),
     ]
 
-    for col, (title, value) in zip([col1, col2, col3, col4], cards):
+    for col, (label, value) in zip([col1, col2, col3, col4], items):
         with col:
             st.markdown(
                 f"""
-                <div class="card">
-                    <div class="card-title">{title}</div>
-                    <div class="card-value">{value}</div>
+                <div class="kpi-card">
+                    <div class="kpi-label">{label}</div>
+                    <div class="kpi-value">{value}</div>
                 </div>
                 """,
                 unsafe_allow_html=True,
             )
-
-    with st.expander("View full synthetic case input"):
-        st.table(
-            {
-                "Field": list(case_data.keys()),
-                "Value": [str(value) for value in case_data.values()],
-            }
-        )
 
 
 def decision_class(decision: str) -> str:
@@ -359,173 +369,203 @@ def decision_class(decision: str) -> str:
     return "decision-docs"
 
 
-def render_executive_decision(final_decision: dict):
+def render_decision_page():
+    final_decision = st.session_state.final_decision
+    final_state = st.session_state.final_state
+
+    if final_decision is None:
+        st.info("Run a case review first from the Case Intake tab.")
+        return
+
     decision = final_decision["decision"]
     risk_level = final_decision["risk_level"]
-    anomaly_detected = final_decision["anomaly_detected"]
-    human_review_required = final_decision["governance"]["human_review_required"]
+    claim_anomaly = "Yes" if final_decision["anomaly_detected"] else "No"
+    human_review = (
+        "Yes" if final_decision["governance"]["human_review_required"] else "No"
+    )
 
     st.markdown("### Decision Summary")
 
-    decision_col, risk_col, anomaly_col, review_col = st.columns([2, 1, 1, 1])
+    col1, col2, col3, col4 = st.columns([2.2, 1, 1, 1])
 
-    with decision_col:
+    with col1:
         st.markdown(
             f"""
             <div class="{decision_class(decision)}">
-                {decision}
+            {decision}
             </div>
             """,
             unsafe_allow_html=True,
         )
 
-    with risk_col:
+    with col2:
         st.metric("Risk Level", risk_level)
 
-    with anomaly_col:
-        st.metric("Anomaly", "Yes" if anomaly_detected else "No")
+    with col3:
+        st.metric("Claim Anomaly", claim_anomaly)
 
-    with review_col:
-        st.metric("Human Review", "Yes" if human_review_required else "No")
+    with col4:
+        st.metric("Human Review", human_review)
 
     st.markdown(
         f"""
-        <div class="summary-box">
-            <b>Recommended Action:</b><br>
-            {final_decision["recommended_action"]}
+        <div class="section-card">
+        <b>Recommended next step</b><br><br>
+        {final_decision["recommended_action"]}
         </div>
         """,
         unsafe_allow_html=True,
     )
 
+    st.markdown("### Governance Flags")
 
-def render_policy_evidence(final_decision: dict):
+    flags = final_decision["governance"]["flags"]
+    flag_html = "".join([f'<span class="flag">{flag}</span>' for flag in flags])
+
+    st.markdown(
+        f"""
+        <div class="section-card">
+        {flag_html}
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.warning(final_decision["governance"]["safety_statement"])
+
+    with st.expander("Technical trace"):
+        st.json(final_state)
+
+
+def render_evidence_page():
+    final_decision = st.session_state.final_decision
+
+    if final_decision is None:
+        st.info("Run a case review first from the Case Intake tab.")
+        return
+
     st.markdown("### Retrieved Policy Evidence")
+    st.caption("These are fictional policy documents used only for the synthetic demo.")
 
-    for idx, evidence in enumerate(final_decision["policy_evidence"], start=1):
-        source = evidence["source"]
-        relevance = evidence["relevance_score"]
-        text = evidence["text"]
+    for index, item in enumerate(final_decision["policy_evidence"], start=1):
+        with st.expander(
+            f"{index}. {item['source']} | relevance: {item['relevance_score']}",
+            expanded=index == 1,
+        ):
+            st.write(item["text"])
 
-        with st.expander(f"Policy Evidence {idx}: {source} | Relevance {relevance}"):
-            st.write(text)
+    st.markdown("### Case Reasoning")
 
-
-def render_reasoning(final_decision: dict):
-    st.markdown("### Policy-Aware LLM Reasoning")
     st.markdown(
         f"""
-        <div class="summary-box">
-            {final_decision["reasoning"]}
+        <div class="section-card">
+        {final_decision["reasoning"]}
         </div>
         """,
         unsafe_allow_html=True,
     )
 
 
-def render_explainability(final_decision: dict, final_state: dict):
-    st.markdown("### Explainability Summary")
+def render_pattern_page():
+    final_state = st.session_state.final_state
 
-    explanation = final_decision["shap_explanation"]["explanation_text"]
-    top_features = final_decision["shap_explanation"]["top_features"]
+    if final_state is None:
+        st.info("Run a case review first from the Case Intake tab.")
+        return
 
+    cluster = final_state.get("cluster_result", {})
+    claim_anomaly = final_state.get("anomaly_result", {})
+    ts = final_state.get("timeseries_anomaly_result", {})
+
+    st.markdown("### Pattern Recognition")
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown(
+            f"""
+            <div class="section-card">
+            <b>Claim Pattern Cluster</b><br><br>
+            Cluster ID: {cluster.get("cluster_id", "N/A")}<br>
+            Pattern: {cluster.get("cluster_description", "N/A")}<br><br>
+            {cluster.get("explanation", "")}
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    with col2:
+        ts_anomaly = "Yes" if ts.get("timeseries_anomaly_detected", False) else "No"
+        ts_amount = ts.get("total_claim_amount", 0)
+
+        st.markdown(
+            f"""
+            <div class="section-card">
+            <b>Operational Time-Series Signal</b><br><br>
+            Procedure: {ts.get("procedure", "N/A")}<br>
+            Activity date: {ts.get("activity_date", "N/A")}<br>
+            Claim count: {ts.get("claim_count", "N/A")}<br>
+            Total amount: ${ts_amount:,.0f}<br>
+            Incomplete documentation count: {ts.get("incomplete_documentation_count", "N/A")}<br>
+            Time-series anomaly: {ts_anomaly}<br><br>
+            {ts.get("explanation", "")}
+            </div>
+            """,
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("### Explainability")
+
+    shap_info = final_state.get("shap_explanation", {})
     st.markdown(
         f"""
-        <div class="summary-box">
-            {explanation}
+        <div class="section-card">
+        {shap_info.get("explanation_text", "")}
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    st.markdown("#### Top Contributing Features")
+    features = shap_info.get("top_features", [])
 
-    cols = st.columns(min(len(top_features), 5))
+    if features:
+        cols = st.columns(min(5, len(features)))
+        for col, feature in zip(cols, features):
+            with col:
+                st.markdown(
+                    f"""
+                    <div class="kpi-card">
+                    <div class="kpi-label">Model signal</div>
+                    <div class="kpi-value" style="font-size:1rem;">{feature}</div>
+                    </div>
+                    """,
+                    unsafe_allow_html=True,
+                )
 
-    for col, feature in zip(cols, top_features):
-        with col:
-            st.markdown(
-                f"""
-                <div class="card">
-                    <div class="card-value" style="font-size:1rem;">{feature}</div>
-                </div>
-                """,
-                unsafe_allow_html=True,
-            )
+    st.info(claim_anomaly.get("explanation", ""))
 
     try:
         from app.utils.visualization import anomaly_gauge
 
-        st.markdown("### Anomaly Signal")
-        anomaly_score = final_state["anomaly_result"]["anomaly_score"]
-        anomaly_detected = final_state["anomaly_result"]["anomaly_detected"]
-
         st.plotly_chart(
-            anomaly_gauge(anomaly_detected, anomaly_score),
+            anomaly_gauge(
+                claim_anomaly.get("anomaly_detected", False),
+                claim_anomaly.get("anomaly_score", 0),
+            ),
             use_container_width=True,
         )
-
-        st.info(final_state["anomaly_result"]["explanation"])
-
-    except Exception as error:
-        st.warning("Anomaly gauge could not be displayed.")
-        st.write(str(error))
-
-
-def render_governance(final_decision: dict):
-    st.markdown("### Governance and Responsible AI")
-
-    flags = final_decision["governance"]["flags"]
-    safety_statement = final_decision["governance"]["safety_statement"]
-
-    flag_html = "".join([f'<span class="flag">✅ {flag}</span>' for flag in flags])
-
-    st.markdown(
-        f"""
-        <div class="summary-box">
-            {flag_html}
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-    st.warning(safety_statement)
-
-
-def render_dataset_monitoring():
-    st.markdown("### Synthetic Dataset Monitoring")
-
-    try:
-        from app.utils.data_loader import load_claims_data
-        from app.utils.visualization import (
-            risk_distribution_chart,
-            claim_amount_by_procedure_chart,
-        )
-
-        df = load_claims_data()
-
-        chart_col1, chart_col2 = st.columns(2)
-
-        with chart_col1:
-            st.plotly_chart(risk_distribution_chart(df), use_container_width=True)
-
-        with chart_col2:
-            st.plotly_chart(claim_amount_by_procedure_chart(df), use_container_width=True)
-
-        with st.expander("View synthetic claims dataset"):
-            st.dataframe(df, use_container_width=True)
-
-    except Exception as error:
-        st.error("Dataset monitoring could not be loaded.")
-        st.write(str(error))
+    except Exception:
+        pass
 
 
 def build_case_chat_context(final_state: dict) -> str:
     case_data = final_state.get("validated_case", {})
-    final_decision = final_state.get("final_decision", {})
     risk_prediction = final_state.get("risk_prediction", {})
+    cluster_result = final_state.get("cluster_result", {})
     anomaly_result = final_state.get("anomaly_result", {})
-    shap_explanation = final_state.get("shap_explanation", {})
+    timeseries_result = final_state.get("timeseries_anomaly_result", {})
+    shap_result = final_state.get("shap_explanation", {})
+    final_decision = final_state.get("final_decision", {})
     policy_evidence = final_state.get("policy_evidence", [])
 
     policy_text = "\n\n".join(
@@ -536,22 +576,28 @@ def build_case_chat_context(final_state: dict) -> str:
     )
 
     return f"""
-Synthetic Case:
+Current Synthetic Case:
 {json.dumps(case_data, indent=2)}
 
 Risk Prediction:
 {json.dumps(risk_prediction, indent=2)}
 
-Anomaly Result:
+Claim Pattern Cluster:
+{json.dumps(cluster_result, indent=2)}
+
+Claim-Level Anomaly Result:
 {json.dumps(anomaly_result, indent=2)}
 
-Explainability:
-{json.dumps(shap_explanation, indent=2)}
+Time-Series Operations Signal:
+{json.dumps(timeseries_result, indent=2)}
 
-Final Decision:
+Explainability:
+{json.dumps(shap_result, indent=2)}
+
+Final Recommendation:
 {json.dumps(final_decision, indent=2)}
 
-Retrieved Synthetic Policy Evidence:
+Policy Evidence:
 {policy_text}
 """
 
@@ -562,21 +608,20 @@ def answer_case_question(question: str, final_state: dict) -> str:
     context = build_case_chat_context(final_state)
 
     prompt = f"""
-You are a careful healthcare AI case-review assistant for a synthetic TPO demo.
+You are helping a reviewer understand one synthetic healthcare case.
 
-Rules:
-- Answer only using the provided synthetic case context.
-- Do not provide real medical advice.
-- Do not diagnose patients.
-- Do not make final clinical, payment, billing, or coverage decisions.
-- Do not invent facts that are not in the case context.
-- If the answer is uncertain, say what information is missing.
-- Keep the answer clear, concise, and useful for a human reviewer.
+Use only the context below.
+Do not give medical advice.
+Do not make final payment, billing, coverage, or clinical decisions.
+Do not invent facts.
+If information is missing, say what is missing.
+Avoid raw JSON in the final answer.
+Keep the answer direct and practical.
 
-Case Context:
+Context:
 {context}
 
-User Question:
+Question:
 {question}
 
 Answer:
@@ -590,10 +635,7 @@ Answer:
             messages=[
                 {
                     "role": "system",
-                    "content": (
-                        "You answer questions about a synthetic healthcare TPO case. "
-                        "You are careful, policy-aware, and governance-aware."
-                    ),
+                    "content": "You explain synthetic healthcare case-review outputs in plain language.",
                 },
                 {
                     "role": "user",
@@ -606,70 +648,62 @@ Answer:
 
     except Exception as error:
         return (
-            "I could not reach Ollama, so here is a safe fallback answer: "
-            "Based on the current synthetic case, the recommendation should be interpreted "
-            "as decision support only. Review the risk level, anomaly result, retrieved policy "
-            "evidence, documentation completeness, and governance flags before taking action. "
+            "I could not reach the local Ollama model. Review the risk level, policy evidence, "
+            "documentation status, pattern signals, and governance flags before taking action. "
             f"Technical note: {str(error)}"
         )
 
 
-def render_case_chat_assistant():
-    st.markdown("### Case Q&A Assistant")
-
+def render_assistant_page():
     if st.session_state.final_state is None:
-        st.info("Run the governed agentic AI workflow first. Then you can ask questions about the case.")
+        st.info("Run a case review first from the Case Intake tab.")
         return
+
+    st.markdown("### Reviewer Assistant")
 
     st.markdown(
         """
-        <div class="chat-help">
-        Ask questions about this synthetic case, the policy evidence, the risk prediction,
-        anomaly result, explainability summary, governance flags, or recommended action.
+        <div class="section-card">
+        Ask questions about the current synthetic case. The assistant answers using the case output,
+        retrieved policy evidence, model signals, and governance flags.
         </div>
         """,
         unsafe_allow_html=True,
     )
 
-    example_questions = [
-        "Why did this case require documentation?",
+    quick_questions = [
+        "",
+        "Why was this decision recommended?",
         "What policy evidence supports the decision?",
-        "What factors contributed most to the high risk prediction?",
-        "Is this an autonomous denial?",
+        "What cluster does this case belong to?",
+        "Is there a time-series anomaly for this procedure?",
         "What should the human reviewer check next?",
+        "Is this an autonomous denial?",
     ]
 
-    selected_question = st.selectbox(
-        "Example questions",
-        [""] + example_questions,
-    )
+    selected_question = st.selectbox("Choose a common reviewer question", quick_questions)
+    typed_question = st.chat_input("Ask a question about this case")
 
-    user_question = st.chat_input("Ask a question about the current synthetic case")
-
-    if selected_question and selected_question != "":
-        user_question = selected_question
+    question = typed_question or selected_question
 
     for message in st.session_state.chat_messages:
         with st.chat_message(message["role"]):
             st.write(message["content"])
 
-    if user_question:
+    if question:
         st.session_state.chat_messages.append(
             {
                 "role": "user",
-                "content": user_question,
+                "content": question,
             }
         )
 
         with st.chat_message("user"):
-            st.write(user_question)
+            st.write(question)
 
         with st.chat_message("assistant"):
-            with st.spinner("Answering based on the current case and retrieved policy evidence..."):
-                answer = answer_case_question(
-                    user_question,
-                    st.session_state.final_state,
-                )
+            with st.spinner("Checking the case..."):
+                answer = answer_case_question(question, st.session_state.final_state)
                 st.write(answer)
 
         st.session_state.chat_messages.append(
@@ -680,85 +714,107 @@ def render_case_chat_assistant():
         )
 
 
-def run_workflow(case_data: dict):
-    from app.agents.graph import run_tpo_workflow
+def render_data_monitor_page():
+    st.markdown("### Synthetic Data Monitor")
 
-    return run_tpo_workflow(case_data)
+    try:
+        from app.utils.data_loader import load_claims_data, load_claims_timeseries_data
+        from app.utils.visualization import (
+            risk_distribution_chart,
+            claim_amount_by_procedure_chart,
+        )
+        import plotly.express as px
+
+        claims_df = load_claims_data()
+        ts_df = load_claims_timeseries_data()
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.plotly_chart(risk_distribution_chart(claims_df), use_container_width=True)
+
+        with col2:
+            st.plotly_chart(
+                claim_amount_by_procedure_chart(claims_df),
+                use_container_width=True,
+            )
+
+        st.markdown("### Daily Synthetic Claim Activity")
+
+        line_chart = px.line(
+            ts_df,
+            x="date",
+            y="total_claim_amount",
+            color="procedure",
+            markers=True,
+            title="Synthetic Daily Claim Amount by Procedure",
+        )
+        st.plotly_chart(line_chart, use_container_width=True)
+
+        with st.expander("View synthetic claims"):
+            st.dataframe(claims_df, use_container_width=True)
+
+        with st.expander("View synthetic time-series activity"):
+            st.dataframe(ts_df, use_container_width=True)
+
+    except Exception as error:
+        st.error("Data monitor could not be loaded.")
+        st.write(str(error))
 
 
 def main():
     initialize_session_state()
     apply_css()
+
     render_header()
+    render_workflow()
 
-    case_data = render_sidebar_inputs()
-
-    render_agent_pipeline()
-    render_case_summary(case_data)
-
-    st.markdown("---")
-
-    run_button = st.button(
-        "Run Governed Agentic AI Workflow",
-        type="primary",
-        use_container_width=True,
+    main_tabs = st.tabs(
+        [
+            "1. Case Intake",
+            "2. Decision",
+            "3. Evidence",
+            "4. Pattern Signals",
+            "5. Reviewer Assistant",
+            "6. Data Monitor",
+        ]
     )
 
-    if run_button:
-        st.session_state.chat_messages = []
+    with main_tabs[0]:
+        st.markdown("### New Case Review")
+        case_data = get_case_input()
+        st.session_state.case_data = case_data
 
-        with st.spinner(
-            "Running agentic workflow: intake, RAG retrieval, risk prediction, anomaly detection, reasoning, and governance..."
-        ):
-            final_state = run_workflow(case_data)
-            final_decision = final_state["final_decision"]
+        render_case_kpis(case_data)
 
-        st.session_state.final_state = final_state
-        st.session_state.final_decision = final_decision
-
-    if st.session_state.final_decision is not None:
         st.markdown("---")
-        render_executive_decision(st.session_state.final_decision)
 
-        tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
-            [
-                "Policy Evidence",
-                "LLM Reasoning",
-                "Explainability",
-                "Governance",
-                "Case Q&A Assistant",
-                "Technical Details",
-            ]
-        )
+        if st.button("Run Case Review", type="primary", use_container_width=True):
+            st.session_state.chat_messages = []
 
-        with tab1:
-            render_policy_evidence(st.session_state.final_decision)
+            with st.spinner("Reviewing the case..."):
+                final_state = run_workflow(case_data)
+                final_decision = final_state["final_decision"]
 
-        with tab2:
-            render_reasoning(st.session_state.final_decision)
+            st.session_state.final_state = final_state
+            st.session_state.final_decision = final_decision
 
-        with tab3:
-            render_explainability(
-                st.session_state.final_decision,
-                st.session_state.final_state,
-            )
+            st.success("Case review completed. Open the Decision tab to review the result.")
 
-        with tab4:
-            render_governance(st.session_state.final_decision)
+    with main_tabs[1]:
+        render_decision_page()
 
-        with tab5:
-            render_case_chat_assistant()
+    with main_tabs[2]:
+        render_evidence_page()
 
-        with tab6:
-            st.markdown("### Technical Agent State")
-            st.caption("This section is included for transparency and debugging.")
-            st.json(st.session_state.final_state)
+    with main_tabs[3]:
+        render_pattern_page()
 
-    else:
-        st.info("Click the workflow button to generate a decision and enable case-based Q&A.")
+    with main_tabs[4]:
+        render_assistant_page()
 
-    st.markdown("---")
-    render_dataset_monitoring()
+    with main_tabs[5]:
+        render_data_monitor_page()
 
 
 if __name__ == "__main__":

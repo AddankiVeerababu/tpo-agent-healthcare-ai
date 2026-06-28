@@ -8,6 +8,8 @@ def build_reasoning_prompt(state: dict) -> str:
     case_data = state["validated_case"]
     risk_prediction = state["risk_prediction"]
     anomaly_result = state["anomaly_result"]
+    cluster_result = state.get("cluster_result", {})
+    timeseries_anomaly_result = state.get("timeseries_anomaly_result", {})
     shap_explanation = state["shap_explanation"]
     policy_evidence = state["policy_evidence"]
 
@@ -37,8 +39,14 @@ Synthetic Case:
 Risk Prediction:
 {json.dumps(risk_prediction, indent=2)}
 
-Anomaly Result:
+Claim Pattern Cluster:
+{json.dumps(cluster_result, indent=2)}
+
+Claim-Level Anomaly Result:
 {json.dumps(anomaly_result, indent=2)}
+
+Time-Series Operations Anomaly Result:
+{json.dumps(timeseries_anomaly_result, indent=2)}
 
 Explainability Summary:
 {json.dumps(shap_explanation, indent=2)}

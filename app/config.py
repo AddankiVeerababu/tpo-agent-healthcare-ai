@@ -17,3 +17,6 @@ OLLAMA_MODEL_NAME = "llama3.2:3b"
 
 RISK_LABELS = ["Low", "Medium", "High"]
 DECISION_LABELS = ["Approve", "Manual Review", "Request Documentation"]
+CLUSTERING_MODEL_PATH = MODEL_DIR / "clustering_model.pkl"
+TIMESERIES_ANOMALY_MODEL_PATH = MODEL_DIR / "timeseries_anomaly_model.pkl"
+TIMESERIES_PREPROCESSING_PATH = MODEL_DIR / "timeseries_preprocessing.pkl"

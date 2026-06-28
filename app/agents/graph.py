@@ -10,7 +10,9 @@ from langgraph.graph import StateGraph, END
 from app.agents.case_intake_agent import case_intake_agent
 from app.agents.policy_retrieval_agent import policy_retrieval_agent
 from app.agents.risk_classification_agent import risk_classification_agent
+from app.agents.clustering_agent import clustering_agent
 from app.agents.anomaly_detection_agent import anomaly_detection_agent
+from app.agents.timeseries_anomaly_agent import timeseries_anomaly_agent
 from app.agents.shap_explanation_agent import shap_explanation_agent
 from app.agents.llm_reasoning_agent import llm_reasoning_agent
 from app.agents.governance_agent import governance_agent
@@ -22,7 +24,9 @@ class TPOAgentState(TypedDict, total=False):
     intake_status: str
     policy_evidence: list[dict]
     risk_prediction: dict
+    cluster_result: dict
     anomaly_result: dict
+    timeseries_anomaly_result: dict
     shap_explanation: dict
     llm_reasoning: str
     final_decision: dict
@@ -34,7 +38,9 @@ def build_tpo_graph():
     workflow.add_node("case_intake_agent", case_intake_agent)
     workflow.add_node("policy_retrieval_agent", policy_retrieval_agent)
     workflow.add_node("risk_classification_agent", risk_classification_agent)
+    workflow.add_node("clustering_agent", clustering_agent)
     workflow.add_node("anomaly_detection_agent", anomaly_detection_agent)
+    workflow.add_node("timeseries_anomaly_agent", timeseries_anomaly_agent)
     workflow.add_node("shap_explanation_agent", shap_explanation_agent)
     workflow.add_node("llm_reasoning_agent", llm_reasoning_agent)
     workflow.add_node("governance_agent", governance_agent)
@@ -43,8 +49,10 @@ def build_tpo_graph():
 
     workflow.add_edge("case_intake_agent", "policy_retrieval_agent")
     workflow.add_edge("policy_retrieval_agent", "risk_classification_agent")
-    workflow.add_edge("risk_classification_agent", "anomaly_detection_agent")
-    workflow.add_edge("anomaly_detection_agent", "shap_explanation_agent")
+    workflow.add_edge("risk_classification_agent", "clustering_agent")
+    workflow.add_edge("clustering_agent", "anomaly_detection_agent")
+    workflow.add_edge("anomaly_detection_agent", "timeseries_anomaly_agent")
+    workflow.add_edge("timeseries_anomaly_agent", "shap_explanation_agent")
     workflow.add_edge("shap_explanation_agent", "llm_reasoning_agent")
     workflow.add_edge("llm_reasoning_agent", "governance_agent")
     workflow.add_edge("governance_agent", END)
@@ -78,3 +86,11 @@ if __name__ == "__main__":
     print("\nFinal TPO Agent Decision")
     print("------------------------")
     print(result["final_decision"])
+
+    print("\nCluster Result")
+    print("--------------")
+    print(result["cluster_result"])
+
+    print("\nTime-Series Anomaly Result")
+    print("--------------------------")
+    print(result["timeseries_anomaly_result"])
